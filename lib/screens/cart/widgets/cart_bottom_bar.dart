@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 
 class CartBottomBar extends StatelessWidget {
   final double totalPrice;
+
   const CartBottomBar({super.key, required this.totalPrice});
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: const BoxDecoration(
@@ -17,7 +16,7 @@ class CartBottomBar extends StatelessWidget {
       child: Row(
         children: [
           Text("Total: \$${totalPrice.toStringAsFixed(2)}",
-              style: theme.textTheme.headlineMedium?.copyWith(fontSize: 18)),
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
           const Spacer(),
           ElevatedButton(
             onPressed: () {},

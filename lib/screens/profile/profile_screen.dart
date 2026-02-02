@@ -2,10 +2,11 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:my_project/models/user_model.dart';
-import '../widgets/profile/profile_header.dart';
-import '../widgets/profile/profile_card.dart';
-import '../widgets/profile/certificate_tile.dart';
-import '../widgets/profile/menu_tile.dart';
+
+import 'widgets/profile_header.dart';
+import 'widgets/profile_card.dart';
+import 'widgets/certificate_tile.dart';
+import 'widgets/menu_tile.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -44,7 +45,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             const ProfileHeader(),
             ProfileCard(user: user!),
             const SizedBox(height: 10),
-            const CertificateTile(),
+            CertificateTile(user: user!), // 👈 pass user if needed
             const SizedBox(height: 10),
             const MenuTile(icon: Icons.edit, title: "Edit Profile"),
             const MenuTile(icon: Icons.settings, title: "Settings"),

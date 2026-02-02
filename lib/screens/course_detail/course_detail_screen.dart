@@ -1,14 +1,15 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import '../models/course_model.dart';
-import '../widgets/course_detail/banner_section.dart';
-import '../widgets/course_detail/title_section.dart';
-import '../widgets/course_detail/instructor_section.dart';
-import '../widgets/course_detail/stats_section.dart';
-import '../widgets/course_detail/curriculum_tab.dart';
-import '../widgets/course_detail/rating_section.dart';
-import '../widgets/course_detail/price_section.dart';
+import '../../models/course_model.dart';
+
+import 'widgets/banner_section.dart';
+import 'widgets/title_section.dart';
+import 'widgets/instructor_section.dart';
+import 'widgets/stats_section.dart';
+import 'widgets/curriculum_tab.dart';
+import 'widgets/rating_section.dart';
+import 'widgets/price_section.dart';
 
 class CourseDetailScreen extends StatefulWidget {
   final int courseId;
@@ -30,7 +31,6 @@ class _CourseDetailScreenState extends State<CourseDetailScreen>
     loadCourse();
   }
 
-  /// 🔄 This must be OUTSIDE build method
   @override
   void didUpdateWidget(CourseDetailScreen oldWidget) {
     super.didUpdateWidget(oldWidget);
@@ -44,8 +44,8 @@ class _CourseDetailScreenState extends State<CourseDetailScreen>
     final jsonData = json.decode(data);
     final courses = jsonData['courseCatalog']['allCourses'] as List;
 
-    final selected = courses.cast<Map<String, dynamic>?>().firstWhere(
-      (e) => e?['id'] == widget.courseId,
+    final selected = courses.firstWhere(
+      (e) => e['id'] == widget.courseId,
       orElse: () => null,
     );
 
@@ -59,9 +59,7 @@ class _CourseDetailScreenState extends State<CourseDetailScreen>
   @override
   Widget build(BuildContext context) {
     if (course == null) {
-      return const Scaffold(
-        body: Center(child: CircularProgressIndicator()),
-      );
+      return const Scaffold(body: Center(child: CircularProgressIndicator()));
     }
 
     return Scaffold(
@@ -94,9 +92,9 @@ class _CourseDetailScreenState extends State<CourseDetailScreen>
                     height: 250,
                     child: TabBarView(
                       controller: _tabController,
-                      children: const [
+                      children: [
                         CurriculumTab(),
-                        Center(child: Text("Reviews here")),
+                        const Center(child: Text("Reviews here")),
                       ],
                     ),
                   ),

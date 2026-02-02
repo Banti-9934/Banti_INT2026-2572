@@ -1,13 +1,16 @@
-import '../models/course_model.dart';
+import 'package:my_project/models/course_model.dart';
 
 class CartService {
-  static final CartService _instance = CartService._internal();
+  CartService._private();
+  static final CartService _instance = CartService._private();
   factory CartService() => _instance;
-  CartService._internal();
 
   final List<CourseModel> _items = [];
 
   List<CourseModel> get items => _items;
+
+  double get totalPrice =>
+      _items.fold(0, (sum, item) => sum + item.price);
 
   void addToCart(CourseModel course) {
     if (!_items.any((c) => c.id == course.id)) {
@@ -18,7 +21,4 @@ class CartService {
   void removeFromCart(int id) {
     _items.removeWhere((c) => c.id == id);
   }
-
-  double get totalPrice =>
-      _items.fold(0, (sum, item) => sum + item.price);
 }

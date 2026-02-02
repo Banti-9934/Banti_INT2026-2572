@@ -1,7 +1,7 @@
 import 'package:go_router/go_router.dart';
-import 'screens/profile_screen.dart';
-import 'screens/course_detail_screen.dart';
-import 'screens/cart_screen.dart';
+import 'package:my_project/screens/profile/profile_screen.dart';
+import 'package:my_project/screens/course_detail/course_detail_screen.dart';
+import 'package:my_project/screens/cart/cart_screen.dart';
 
 final GoRouter appRouter = GoRouter(
   initialLocation: '/profile',

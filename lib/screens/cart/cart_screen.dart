@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import '../services/cart_service.dart';
-import '../widgets/cart/cart_item_tile.dart';
-import '../widgets/cart/cart_bottom_bar.dart';
-import '../widgets/cart/empty_cart_view.dart';
+import '../../services/cart_service.dart';
+import 'widgets/cart_item_tile.dart';
+import 'widgets/cart_bottom_bar.dart';
+import 'widgets/empty_cart_view.dart';
+
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
@@ -12,11 +13,10 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
+  final cart = CartService(); // 🔥 singleton instance
 
   @override
   Widget build(BuildContext context) {
-    final cart = CartService();
-
     return Scaffold(
       appBar: AppBar(title: const Text("My Cart")),
       body: cart.items.isEmpty

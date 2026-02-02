@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import '../../models/course_model.dart';
+import '../../../models/course_model.dart';
 
 class InstructorSection extends StatelessWidget {
   final CourseModel course;
+
   const InstructorSection({super.key, required this.course});
 
   @override
